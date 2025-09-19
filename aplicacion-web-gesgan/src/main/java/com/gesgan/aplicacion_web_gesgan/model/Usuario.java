@@ -20,8 +20,15 @@ public class Usuario {
     @Column(nullable = false, length = 100)
     private String apellido;
     
+    @Column(nullable = false, length = 200)
+    private String password; // ← NUEVO campo para contraseña
+    
     @Column(name = "fecha_creacion")
     private LocalDateTime fechaCreacion;
+    
+    @Column(name = "rol")
+    private String rol = "USER"; // ← NUEVO campo para roles
+
     
     // Constructores
     public Usuario() {
