@@ -10,4 +10,3 @@ public class SistemasDeGestionGanaderaApplication {
         SpringApplication.run(SistemasDeGestionGanaderaApplication.class, args);
     }
 }
-
