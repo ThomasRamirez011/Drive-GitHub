@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GESGAN - Sistema de Gestión Ganadera</title>
-    <link rel="stylesheet" href="#index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
     <header>
@@ -16,11 +15,11 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="login.html">Iniciar Sesion</a></li>
-                    <li><a href="#">Funcionalidades</a></li>
-                    <li><a href="#">Nosotros</a></li>
-                    <li><a href="#">Contacto</a></li>
+                    <li><a th:href="@{/}">Inicio</a></li>
+                    <li><a th:href="@{/login}">Iniciar Sesión</a></li>
+                    <li><a th:href="@{/funcionalidades}">Funcionalidades</a></li>
+                    <li><a th:href="@{/nosotros}">Nosotros</a></li>
+                    <li><a th:href="@{/contacto}">Contacto</a></li>
                 </ul>
             </nav>
         </div>
@@ -30,7 +29,7 @@
         <div class="hero-content">
             <h2>Gestión Ganadera Inteligente</h2>
             <p>Optimiza el manejo de tu finca con nuestra plataforma digital integral</p>
-            <a href="auth/login.html" class="btn">Comenzar ahora</a>
+            <a href="#login" class="btn">Comenzar ahora</a>
         </div>
     </section>
 
