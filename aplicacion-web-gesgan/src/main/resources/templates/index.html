@@ -10,16 +10,17 @@
     <header>
         <div class="container header-content">
             <div class="logo">
-                <i class="fas fa-cow logo-icon"></i>
-                <h1>GESGAN</h1>
-            </div>
+                <div class="logo">
+                        <img src="/src/main/resources/static/css/imgs/fondo1.jpeg" alt="GESGAN Logo" class="logo-img">
+                    <h1>GESGAN</h1>
+                </div>                
             <nav>
                 <ul>
                     <li><a th:href="@{/}">Inicio</a></li>
                     <li><a th:href="@{/login}">Iniciar Sesión</a></li>
-                    <li><a th:href="@{/funcionalidades}">Funcionalidades</a></li>
-                    <li><a th:href="@{/nosotros}">Nosotros</a></li>
-                    <li><a th:href="@{/contacto}">Contacto</a></li>
+                    <li><a th:href="@{/ganado}">Ganado</a></li>
+                    <li><a th:href="@{/sanidad}">Sanidad</a></li>
+                    <li><a th:href="@{/configuracion}">Configuración</a></li>
                 </ul>
             </nav>
         </div>
@@ -27,9 +28,7 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h2>Gestión Ganadera Inteligente</h2>
-            <p>Optimiza el manejo de tu finca con nuestra plataforma digital integral</p>
-            <a href="#login" class="btn">Comenzar ahora</a>
+            <h2>Tu ganado mas organizado que nunca</h2>
         </div>
     </section>
 
