@@ -10,13 +10,12 @@
     <header>
         <div class="container header-content">
             <div class="logo">
-                <div class="logo">
-                        <img src="/src/main/resources/static/css/imgs/fondo1.jpeg" alt="GESGAN Logo" class="logo-img">
-                    <h1>GESGAN</h1>
-                </div>                
+                <img th:src="@{/css/imgs/logomn.png}" alt="GESGAN Logo" style="height: 35px;">
+                <h1>GESGAN</h1>
+            </div>                          
             <nav>
                 <ul>
-                    <li><a th:href="@{/}">Inicio</a></li>
+                    <li><a th:href="@{/login.html}">Inicio</a></li>
                     <li><a th:href="@{/login}">Iniciar Sesión</a></li>
                     <li><a th:href="@{/ganado}">Ganado</a></li>
                     <li><a th:href="@{/sanidad}">Sanidad</a></li>
@@ -32,10 +31,28 @@
         </div>
     </section>
 
+    <section class="ganado-section">
+        <div class="galeria-ganado">
+                <div class="imagen-ganado">
+                    <img th:src="@{/css/imgs/vaca1.png}" alt="Vaca 1">
+                </div>
+                <div class="imagen-ganado">
+                    <img th:src="@{/css/imgs/vaca2.png}" alt="Vaca 2">
+                </div>
+                <div class="imagen-ganado">
+                    <img th:src="@{/css/imgs/vaca3.png}" alt="Vaca 3">
+                </div>
+                <div class="imagen-ganado">
+                    <img th:src="@{/css/imgs/vaca4.png}" alt="Vaca 4">
+                </div>
+                <div class="imagen-ganado">
+                    <img th:src="@{/css/imgs/vaca5.png}" alt="Vaca 5">
+                </div>
+            </div>
+    </section>
+
     <section class="mission-vision">
         <div class="container">
-            <div class="section-title">
-                <h2>Nuestra Propuesta</h2>
             </div>
             <div class="mv-container">
                 <div class="mv-box">
@@ -50,38 +67,20 @@
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Contacto</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Colombia </p>
-                    <p><i class="fas fa-phone"></i> +57 320 898 7777</p>
-                    <p><i class="fas fa-envelope"></i> info@gesgan.com</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 GESGAN - Todos los derechos reservados</p>
+        <div class="terms-contact-container">
+            <div class="terms-contact-content">
+                <div class="terms">Términos y condiciones</div>
+                <div class="contact-email">Contacto: Gesgan2025@gmail.com</div>
             </div>
         </div>
+
+    <footer>
+            <div class="copyright">
+                <a href="https://www.youtube.com/watch?v=Dst9gZkq1a8" class="copyright-link" target="_blank">©</a> 2025 GESGAN - Todos los derechos reservados
+            </div>
     </footer>
 
     <script>
-        // Simple JavaScript para mejorar la interacción
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.card, .feature');
-            
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.cursor = 'pointer';
-                });
-                
-                card.addEventListener('click', function() {
-                    alert('¡Gracias por tu interés en GESGAN! Próximamente más funcionalidades.');
-                });
-            });
-            
-            // Animación para el hero text
             const heroContent = document.querySelector('.hero-content');
             heroContent.style.opacity = 0;
             heroContent.style.transform = 'translateY(20px)';
@@ -91,7 +90,6 @@
                 heroContent.style.opacity = 1;
                 heroContent.style.transform = 'translateY(0)';
             }, 300);
-        });
     </script>
 </body>
 </html>
