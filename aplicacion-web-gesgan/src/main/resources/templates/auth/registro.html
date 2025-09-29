@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - GESGAN</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+    <div class="login-container">
+        <div class="form-container">
+            
+            <form class="register-form active" th:action="@{/registro}" th:object="${usuario}" method="post" id="registerForm">
+                <h2>Registro</h2>
+                
+                <div class="input-group">
+                    <label for="nombre">Nombre completo</label>
+                    <input type="text" id="nombre" th:field="*{nombre}" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" th:field="*{email}" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" th:field="*{password}" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="confirmPassword">Confirmar contraseña</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+                
+                <div class="terms-check">
+                    <label class="checkbox">
+                        <input type="checkbox" name="terms" required>
+                        <span class="checkmark"></span>
+                        Acepto los términos y condiciones
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn-primary">Registrarse</button>
+                
+                <div class="switch-form">
+                    <p>¿Ya tienes una cuenta? <a th:href="@{/login}">Iniciar Sesión</a></p>
+                </div>
+            </form>
+        </div>
+
+    <footer>
+        <div class="terms-contact-container">
+            <div class="terms-contact-content">
+                <div class="terms">Términos y condiciones</div>
+                <div class="contact-email">Contacto: Gesgan2025@gmail.com</div>
+            </div>
+        </div>
+    </footer>
+    </div>
+
+    <script>
+        // Validación de contraseñas
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                e.preventDefault();
+                alert('Las contraseñas no coinciden');
+            }
+        });
+    </script>
+</body>
+</html>
