@@ -1,0 +1,383 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: #f8f8f8;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER */
+header {
+    background-color: #fff;
+    border-bottom: 2px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    color: #000;
+    font-weight: 700;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    padding: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    font-size: 16px;
+    transition: color 0.3s;
+    padding: 8px 0;
+}
+
+nav ul li a:hover {
+    color: #008f39;
+}
+
+nav ul li a.active {
+    color: #008f39;
+    font-weight: bold;
+    border-bottom: 2px solid #008f39;
+}
+
+/* INFORMACIÓN DE SESIÓN */
+.session-info {
+    background: #e8f5e8;
+    padding: 12px 0;
+    border-bottom: 2px solid #008f39;
+}
+
+.session-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.welcome-message {
+    color: #2c7744;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.logout-btn {
+    background: #008f39;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.logout-btn:hover {
+    background: #006b2c;
+}
+
+/* SECCIÓN PRINCIPAL */
+.content-section {
+    flex: 1;
+    padding: 40px 20px;
+    background: #f8f8f8;
+}
+
+.section-title {
+    text-align: center;
+    background-color: #008f39;
+    color: white;
+    padding: 20px 0;
+    margin-bottom: 40px;
+}
+
+.section-title h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* CONTENIDO DE CONFIGURACIÓN */
+.content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* TARJETA DE INFORMACIÓN DEL USUARIO */
+.user-info-card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    border: 1px solid #e0e0e0;
+    margin-bottom: 30px;
+}
+
+.user-avatar {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.avatar-icon {
+    font-size: 4rem;
+    color: #008f39;
+    margin-bottom: 15px;
+}
+
+.user-avatar h3 {
+    color: #008f39;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* ITEMS DE INFORMACIÓN */
+.info-item {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    font-size: 14px;
+    display: block;
+}
+
+.info-value {
+    background: #f8f9fa;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    color: #555;
+    font-size: 15px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+}
+
+.status-active {
+    color: #008f39;
+    font-weight: 600;
+}
+
+.status-inactive {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+/* BOTÓN DE CERRAR SESIÓN */
+.logout-section {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn-logout {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-logout:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+/* MENSAJE INFORMATIVO */
+.info-message {
+    text-align: center;
+    margin-top: 25px;
+    padding: 15px;
+    background: #e7f3ff;
+    border-radius: 8px;
+    border-left: 4px solid #008f39;
+}
+
+.info-message p {
+    color: #555;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* FOOTER */
+.terms-contact-container {
+    width: 100%;
+    background-color: #000;
+    padding: 20px 0;
+    margin-top: auto;
+}
+
+.terms-contact-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.terms, .contact-email {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+footer {
+    background-color: #000;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.copyright {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.copyright-link {
+    text-decoration: none;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.copyright-link:hover {
+    text-decoration: underline;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+        text-align: center;
+    }
+    
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .session-content {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding: 0 20px;
+    }
+    
+    .content {
+        padding: 0 15px;
+    }
+    
+    .user-info-card {
+        padding: 25px;
+    }
+    
+    .terms-contact-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        padding: 0 20px;
+    }
+    
+    .section-title h2 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content {
+        padding: 10px 15px;
+    }
+    
+    nav ul {
+        gap: 10px;
+    }
+    
+    nav ul li a {
+        font-size: 14px;
+    }
+    
+    .user-info-card {
+        padding: 20px;
+    }
+    
+    .info-value {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+    
+    .btn-logout {
+        width: 100%;
+        padding: 12px;
+    }
+    
+    .avatar-icon {
+        font-size: 3rem;
+    }
+}

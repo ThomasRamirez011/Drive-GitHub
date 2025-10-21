@@ -1,95 +1,104 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GESGAN - Sistema de Gestión Ganadera</title>
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
 </head>
 <body>
+    <!-- Header Dinámico -->
     <header>
-        <div class="container header-content">
+        <div class="header-content">
             <div class="logo">
-                <img th:src="@{/css/imgs/logomn.png}" alt="GESGAN Logo" style="height: 35px;">
+                <img th:src="@{/css/imgs/logomn.png}" alt="GESGAN Logo">
                 <h1>GESGAN</h1>
             </div>                          
-        <nav>
-            <ul>
-                <li><a th:href="@{/}">Inicio</a></li>
-                <li><a th:href="@{/login}">Iniciar Sesión</a></li>
-                <li><a th:href="@{/ganado}">Ganado</a></li>
-                <li><a th:href="@{/sanidad}">Sanidad</a></li>
-                <li><a th:href="@{/configuracion}">Configuración</a></li>
-            </ul>
-        </nav>
+            <nav>
+                <ul>
+                    <li><a th:href="@{/}" class="active">Inicio</a></li>
+                    <li th:if="${!usuarioLogueado}"><a th:href="@{/login}">Iniciar Sesión</a></li>
+                    <li th:if="${!usuarioLogueado}"><a th:href="@{/registro}">Registrarse</a></li>
+                    <li th:if="${usuarioLogueado}"><a th:href="@{/ganado}">Ganado</a></li>
+                    <li th:if="${usuarioLogueado}"><a th:href="@{/sanidad}">Sanidad</a></li>
+                    <li th:if="${usuarioLogueado}"><a th:href="@{/config}">Configuración</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h2>Tu ganado mas organizado que nunca</h2>
+            <h2>Tu ganado más organizado que nunca</h2>
+            <div th:if="${!usuarioLogueado}" style="margin-top: 20px;">
+            </div>
         </div>
     </section>
 
+    <!-- Galería de Ganado -->
     <section class="ganado-section">
         <div class="galeria-ganado">
-                <div class="imagen-ganado">
-                    <img th:src="@{/css/imgs/vaca1.png}" alt="Vaca 1">
-                </div>
-                <div class="imagen-ganado">
-                    <img th:src="@{/css/imgs/vaca2.png}" alt="Vaca 2">
-                </div>
-                <div class="imagen-ganado">
-                    <img th:src="@{/css/imgs/vaca3.png}" alt="Vaca 3">
-                </div>
-                <div class="imagen-ganado">
-                    <img th:src="@{/css/imgs/vaca4.png}" alt="Vaca 4">
-                </div>
-                <div class="imagen-ganado">
-                    <img th:src="@{/css/imgs/vaca5.png}" alt="Vaca 5">
-                </div>
+            <div class="imagen-ganado">
+                <img th:src="@{/css/imgs/vaca1.png}" alt="Vaca 1">
             </div>
+            <div class="imagen-ganado">
+                <img th:src="@{/css/imgs/vaca2.png}" alt="Vaca 2">
+            </div>
+            <div class="imagen-ganado">
+                <img th:src="@{/css/imgs/vaca3.png}" alt="Vaca 3">
+            </div>
+            <div class="imagen-ganado">
+                <img th:src="@{/css/imgs/vaca4.png}" alt="Vaca 4">
+            </div>
+            <div class="imagen-ganado">
+                <img th:src="@{/css/imgs/vaca5.png}" alt="Vaca 5">
+            </div>
+        </div>
     </section>
 
+    <!-- Misión y Visión -->
     <section class="mission-vision">
-        <div class="container">
+        <div class="mv-container">
+            <div class="mv-box">
+                <h3>Misión</h3>
+                <p>Brindar a los ganaderos una plataforma digital integral y sencilla que facilite la gestión del ganado, permitiendo registrar y controlar de manera eficiente las llegadas, salidas, vacunaciones, ventas y la organización de grupos reproductivos, optimizando el manejo de la finca y apoyando la toma de decisiones con información clara y confiable.</p>
             </div>
-            <div class="mv-container">
-                <div class="mv-box">
-                    <h3><i class="fas fa-bullseye"></i> Misión</h3>
-                    <p>Brindar a los ganaderos una plataforma digital integral y sencilla que facilite la gestión del ganado, permitiendo registrar y controlar de manera eficiente las llegadas, salidas, vacunaciones, ventas y la organización de grupos reproductivos, optimizando el manejo de la finca y apoyando la toma de decisiones con información clara y confiable.</p>
-                </div>
-                <div class="mv-box">
-                    <h3><i class="fas fa-eye"></i> Visión</h3>
-                    <p>Ser la plataforma líder en gestión ganadera digital en Latinoamérica, reconocida por su innovación tecnológica, accesibilidad y apoyo al desarrollo sostenible del sector, transformando la forma en que los productores administran y controlan su ganado para mejorar la productividad, trazabilidad y bienestar animal.</p>
-                </div>
+            <div class="mv-box">
+                <h3>Visión</h3>
+                <p>Ser la plataforma líder en gestión ganadera digital en Latinoamérica, reconocida por su innovación tecnológica, accesibilidad y apoyo al desarrollo sostenible del sector, transformando la forma en que los productores administran y controlan su ganado para mejorar la productividad, trazabilidad y bienestar animal.</p>
             </div>
         </div>
     </section>
 
-        <div class="terms-contact-container">
-            <div class="terms-contact-content">
-                <div class="terms">Términos y condiciones</div>
-                <div class="contact-email">Contacto: Gesgan2025@gmail.com</div>
-            </div>
+    <!-- Footer -->
+    <div class="terms-contact-container">
+        <div class="terms-contact-content">
+            <div class="terms">Términos y condiciones</div>
+            <div class="contact-email">Contacto: Gesgan2025@gmail.com</div>
         </div>
+    </div>
 
     <footer>
+        <div class="footer">
             <div class="copyright">
-                <a href="https://www.archivoseladio.com" class="copyright-link" target="_blank">©</a> 2025 GESGAN - Todos los derechos reservados
+                <a href="https://www.archivoseladio.com" class="copyright-link" target="_blank">©</a> 
+                2025 GESGAN - Todos los derechos reservados
             </div>
+        </div>
     </footer>
 
     <script>
-            const heroContent = document.querySelector('.hero-content');
-            heroContent.style.opacity = 0;
-            heroContent.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                heroContent.style.transition = 'opacity 1s ease, transform 1s ease';
-                heroContent.style.opacity = 1;
-                heroContent.style.transform = 'translateY(0)';
-            }, 300);
+        // Animación del hero
+        const heroContent = document.querySelector('.hero-content');
+        heroContent.style.opacity = '0';
+        heroContent.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            heroContent.style.transition = 'opacity 1s ease, transform 1s ease';
+            heroContent.style.opacity = '1';
+            heroContent.style.transform = 'translateY(0)';
+        }, 300);
     </script>
 </body>
 </html>

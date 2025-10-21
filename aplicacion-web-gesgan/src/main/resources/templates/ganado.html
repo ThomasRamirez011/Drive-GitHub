@@ -7,58 +7,71 @@
     <link rel="stylesheet" th:href="@{/css/ganado.css}">
 </head>
 <body>
-<header>
-    <div class="container header-content">
-        <div class="logo">
-            <img th:src="@{/css/imgs/logomn.png}" alt="GESGAN Logo" style="height: 35px;">
-            <h1>GESGAN</h1>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img th:src="@{/css/imgs/logomn.png}" alt="GESGAN Logo">
+                <h1>GESGAN</h1>
+            </div>                          
+            <nav>
+                <ul>
+                    <li><a th:href="@{/}">Inicio</a></li>
+                    <li><a th:href="@{/ganado}" class="active">Ganado</a></li>
+                    <li><a th:href="@{/sanidad}">Sanidad</a></li>
+                    <li><a th:href="@{/config}">Configuración</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul>
-                <li><a th:href="@{/}">Inicio</a></li>
-                <li><a th:href="@{/login}">Iniciar Sesión</a></li>
-                <li><a th:href="@{/ganado}" class="active">Ganado</a></li>
-                <li><a th:href="@{/sanidad}">Sanidad</a></li>
-                <li><a th:href="@{/configuracion}">Configuración</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+    </header>
 
-<main>
-    <section class="section-title">
-        <h2>GANADO</h2>
-    </section>
 
-    <section class="tabs">
-        <button class="tab active">Toros</button>
-        <button class="tab">Vacas</button>
-        <button class="tab">Lotes por Toro</button>
-        <button class="tab">Llegadas</button>
-        <button class="tab">Salidas</button>
-        <button class="tab">Ventas</button>
-    </section>
 
-    <section class="content">
-        <div class="new-table">+ NUEVA TABLA</div>
+    <main class="content-section">
+        <section class="section-title">
+            <h2>GESTIÓN DE GANADO</h2>
+        </section>
 
-        <div class="cards">
-            <div th:if="${#lists.isEmpty(ganados)}" class="empty-message">
-                <p>No hay registros de ganado disponibles.</p>
+        <section class="tabs">
+            <button class="tab active">Toros</button>
+            <button class="tab">Vacas</button>
+            <button class="tab">Lotes por Toro</button>
+            <button class="tab">Llegadas</button>
+            <button class="tab">Salidas</button>
+            <button class="tab">Ventas</button>
+        </section>
+
+        <section class="content">
+            <div class="new-table">+ AGREGAR NUEVO REGISTRO</div>
+
+            <div class="cards">
+                <div class="card" th:each="g : ${ganados}">
+                    <div>
+                        <h4 th:text="${g.nombre}">Nombre</h4>
+                        <p th:text="${g.tipo}">Tipo</p>
+                        <p th:text="${g.raza}">Raza</p>
+                        <small th:text="${'Ingreso: ' + #temporals.format(g.fechaIngreso, 'dd/MM/yyyy')}">
+                            Fecha
+                        </small>
+                    </div>
+                </div>
             </div>
+        </section>
+    </main>
 
-            <div class="card" th:each="g : ${ganados}">
-                <p th:text="${g.nombre}"></p>
+    <div class="terms-contact-container">
+        <div class="terms-contact-content">
+            <div class="terms">Términos y condiciones</div>
+            <div class="contact-email">Contacto: Gesgan2025@gmail.com</div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer">
+            <div class="copyright">
+                <a href="https://www.archivoseladio.com" class="copyright-link" target="_blank">©</a> 
+                2025 GESGAN - Todos los derechos reservados
             </div>
         </div>
-    </section>
-</main>
-
-<footer>
-    <div class="footer-container">
-        <div class="terms">Términos y condiciones</div>
-        <div class="contact">Contacto: Gesgan2025@gmail.com</div>
-    </div>
-</footer>
+    </footer>
 </body>
 </html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración - GESGAN</title>
+    <link rel="stylesheet" th:href="@{/css/config.css}">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img th:src="@{/css/imgs/logomn.png}" alt="GESGAN Logo">
+                <h1>GESGAN</h1>
+            </div>                          
+            <nav>
+                <ul>
+                    <li><a th:href="@{/}">Inicio</a></li>
+                    <li><a th:href="@{/ganado}">Ganado</a></li>
+                    <li><a th:href="@{/sanidad}">Sanidad</a></li>
+                    <li><a th:href="@{/config}" class="active">Configuración</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Información de Sesión -->
+    <div th:if="${usuarioLogueado}" class="session-info">   
+    </div>
+
+    <main class="content-section">
+        <section class="section-title">
+            <h3>INFORMACIÓN DE USUARIO</h3>
+        </section>
+
+        <section class="content">
+            <!-- Tarjeta de Información del Usuario -->
+            <div class="user-info-card">
+                <div class="info-item">
+                    <span class="info-label">Usuario:</span>
+                    <div class="info-value" th:text="${usuario.username}">Usuario</div>
+                </div>
+                
+                <div class="info-item">
+                    <span class="info-label">Correo Electrónico:</span>
+                    <div class="info-value" th:text="${usuario.correo}">correo@ejemplo.com</div>
+                </div>
+                
+                <div class="info-item">
+                    <span class="info-label">Nombre Completo:</span>
+                    <div class="info-value" th:text="${usuario.nombre != null ? usuario.nombre : 'No especificado'}">Nombre</div>
+                </div>
+                
+                <div class="info-item">
+                    <span class="info-label">Rol:</span>
+                    <div class="info-value" th:text="${usuario.rol}">Usuario</div>
+                </div>
+                
+                <div class="info-item">
+                    <span class="info-label">Fecha de Registro:</span>
+                    <div class="info-value" th:text="${#temporals.format(usuario.fechaCreacion, 'dd/MM/yyyy HH:mm')}">Fecha</div>
+                </div>
+                
+                <div class="info-item">
+                    <span class="info-label">Estado:</span>
+                    <div class="info-value">
+                        <span th:if="${usuario.activo}" class="status-active">Activo</span>
+                        <span th:unless="${usuario.activo}" class="status-inactive">Inactivo</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón de Cerrar Sesión -->
+            <div class="logout-section">
+                <a th:href="@{/logout}" class="btn-logout">Cerrar Sesión</a>
+            </div>
+        </section>
+    </main>
+
+    <div class="terms-contact-container">
+        <div class="terms-contact-content">
+            <div class="terms">Términos y condiciones</div>
+            <div class="contact-email">Contacto: Gesgan2025@gmail.com</div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer">
+            <div class="copyright">
+                <a href="https://www.archivoseladio.com" class="copyright-link" target="_blank">©</a> 
+                2025 GESGAN - Todos los derechos reservados
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

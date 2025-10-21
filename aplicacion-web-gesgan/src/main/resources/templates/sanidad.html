@@ -7,54 +7,85 @@
     <link rel="stylesheet" th:href="@{/css/sanidad.css}">
 </head>
 <body>
-<header>
-    <div class="container header-content">
-        <div class="logo">
-            <img th:src="@{/css/imgs/logomn.png}" alt="GESGAN Logo" style="height: 35px;">
-            <h1>GESGAN</h1>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img th:src="@{/css/imgs/logomn.png}" alt="GESGAN Logo">
+                <h1>GESGAN</h1>
+            </div>                          
+            <nav>
+                <ul>
+                    <li><a th:href="@{/}">Inicio</a></li>
+                    <li><a th:href="@{/ganado}">Ganado</a></li>
+                    <li><a th:href="@{/sanidad}" class="active">Sanidad</a></li>
+                    <li><a th:href="@{/config}">Configuración</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul>
-                <li><a th:href="@{/}">Inicio</a></li>
-                <li><a th:href="@{/login}">Iniciar Sesión</a></li>
-                <li><a th:href="@{/ganado}">Ganado</a></li>
-                <li><a th:href="@{/sanidad}" class="active">Sanidad</a></li>
-                <li><a th:href="@{/configuracion}">Configuración</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+    </header>
 
-<main>
-    <section class="section-title">
-        <h2>SANIDAD</h2>
-    </section>
+    <main class="content-section">
+        <section class="section-title">
+            <h2>CONTROL DE SANIDAD</h2>
+        </section>
 
-    <section class="tabs">
-        <button class="tab active">Vacunación</button>
-        <button class="tab">Enfermedades</button>
-    </section>
+        <section class="tabs">
+            <button class="tab active">Vacunación</button>
+            <button class="tab">Enfermedades</button>
+            <button class="tab">Tratamientos</button>
+            <button class="tab">Controles</button>
+        </section>
 
-    <section class="content">
-        <div class="new-table">+ NUEVA TABLA</div>
+        <section class="content">
+            <div class="new-table">+ NUEVO REGISTRO SANITARIO</div>
 
-        <div class="cards">
-            <div th:if="${#lists.isEmpty(registros)}" class="empty-message">
-                <p>No hay registros sanitarios disponibles.</p>
+            <div class="cards">
+                <div class="card" th:each="r : ${registros}">
+                    <div>
+                        <h4 th:text="${r.tipo}">Tipo</h4>
+                        <p th:text="${r.descripcion}">Descripción</p>
+                        <small th:text="${'Fecha: ' + #temporals.format(r.fecha, 'dd/MM/yyyy')}">
+                            Fecha
+                        </small>
+                    </div>
+                </div>
             </div>
+        </section>
+    </main>
 
-            <div class="card" th:each="r : ${registros}">
-                <p th:text="${#temporals.format(r.fecha, 'dd MMMM yyyy')}"></p>
+    <div class="terms-contact-container">
+        <div class="terms-contact-content">
+            <div class="terms">Términos y condiciones</div>
+            <div class="contact-email">Contacto: Gesgan2025@gmail.com</div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer">
+            <div class="copyright">
+                <a href="https://www.archivoseladio.com" class="copyright-link" target="_blank">©</a> 
+                2025 GESGAN - Todos los derechos reservados
             </div>
         </div>
-    </section>
-</main>
+    </footer>
 
-<footer>
-    <div class="footer-container">
-        <div class="terms">Términos y condiciones</div>
-        <div class="contact">Contacto: Gesgan2025@gmail.com</div>
-    </div>
-</footer>
+    <script>
+        // Funcionalidad de pestañas
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remover clase active de todas las pestañas
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // Agregar clase active a la pestaña clickeada
+                    this.classList.add('active');
+                    
+                    // Aquí puedes agregar lógica para cambiar el contenido
+                    console.log('Pestaña activada:', this.textContent);
+                });
+            });
+        });
+    </script>
 </body>
 </html>

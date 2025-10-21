@@ -2,6 +2,7 @@ package com.gesgan.aplicacion_web_gesgan.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,11 +17,25 @@ public class Sanidad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "tipo", length = 50)
     private String tipo;
+
+    @Column(name = "descripcion", columnDefinition = "TEXT")
     private String descripcion;
+
+    @Column(name = "fecha")
     private LocalDate fecha;
 
-    // Getters y setters
+    // Constructores
+    public Sanidad() {}
+
+    public Sanidad(String tipo, String descripcion, LocalDate fecha) {
+        this.tipo = tipo;
+        this.descripcion = descripcion;
+        this.fecha = fecha;
+    }
+
+    // Getters y Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -32,4 +47,14 @@ public class Sanidad {
 
     public LocalDate getFecha() { return fecha; }
     public void setFecha(LocalDate fecha) { this.fecha = fecha; }
+
+    @Override
+    public String toString() {
+        return "Sanidad{" +
+                "id=" + id +
+                ", tipo='" + tipo + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", fecha=" + fecha +
+                '}';
+    }
 }

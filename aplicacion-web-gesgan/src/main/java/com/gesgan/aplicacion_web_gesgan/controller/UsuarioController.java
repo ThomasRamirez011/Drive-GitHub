@@ -16,7 +16,7 @@ import com.gesgan.aplicacion_web_gesgan.model.Usuario;
 import com.gesgan.aplicacion_web_gesgan.service.UsuarioService;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/api/usuarios") // ✅ Cambiado a /api/usuarios para mejor organización
 public class UsuarioController {
 
     @Autowired
