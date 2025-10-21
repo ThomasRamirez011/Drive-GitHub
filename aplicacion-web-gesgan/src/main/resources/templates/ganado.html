@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganado - GESGAN</title>
+    <link rel="stylesheet" th:href="@{/css/ganado.css}">
+</head>
+<body>
+<header>
+    <div class="container header-content">
+        <div class="logo">
+            <img th:src="@{/css/imgs/logomn.png}" alt="GESGAN Logo" style="height: 35px;">
+            <h1>GESGAN</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a th:href="@{/}">Inicio</a></li>
+                <li><a th:href="@{/login}">Iniciar Sesión</a></li>
+                <li><a th:href="@{/ganado}" class="active">Ganado</a></li>
+                <li><a th:href="@{/sanidad}">Sanidad</a></li>
+                <li><a th:href="@{/configuracion}">Configuración</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="section-title">
+        <h2>GANADO</h2>
+    </section>
+
+    <section class="tabs">
+        <button class="tab active">Toros</button>
+        <button class="tab">Vacas</button>
+        <button class="tab">Lotes por Toro</button>
+        <button class="tab">Llegadas</button>
+        <button class="tab">Salidas</button>
+        <button class="tab">Ventas</button>
+    </section>
+
+    <section class="content">
+        <div class="new-table">+ NUEVA TABLA</div>
+
+        <div class="cards">
+            <div th:if="${#lists.isEmpty(ganados)}" class="empty-message">
+                <p>No hay registros de ganado disponibles.</p>
+            </div>
+
+            <div class="card" th:each="g : ${ganados}">
+                <p th:text="${g.nombre}"></p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-container">
+        <div class="terms">Términos y condiciones</div>
+        <div class="contact">Contacto: Gesgan2025@gmail.com</div>
+    </div>
+</footer>
+</body>
+</html>

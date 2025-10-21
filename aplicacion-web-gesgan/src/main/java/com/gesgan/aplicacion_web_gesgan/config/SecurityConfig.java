@@ -16,7 +16,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/login", "/registro", "/css/**", "/js/**").permitAll()
+                // Permitir acceso público a estas rutas
+                .requestMatchers("/", "/login", "/registro", "/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
+                .requestMatchers("/ganado", "/ganado/**", "/inicio", "/contacto", "/acerca").permitAll() // ✅ Agrega aquí tus rutas HTML
+                // Todas las demás rutas requieren autenticación
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
@@ -27,7 +30,8 @@ public class SecurityConfig {
             .logout(logout -> logout
                 .logoutSuccessUrl("/login?logout")
                 .permitAll()
-            );
+            )
+            .csrf(csrf -> csrf.disable()); // ⚠️ Temporal para desarrollo
         return http.build();
     }
 

@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f8f8f8;
+}
+
+header {
+    background-color: #fff;
+    border-bottom: 2px solid #ddd;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #008f39;
+}
+
+nav ul li a.active {
+    color: #008f39;
+    font-weight: bold;
+}
+
+.section-title {
+    text-align: center;
+    background-color: #008f39;
+    color: white;
+    padding: 10px 0;
+    margin-top: 10px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    background-color: #000;
+    gap: 10px;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.tab {
+    background: transparent;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.tab.active {
+    background-color: #008f39;
+}
+
+.tab:hover {
+    background-color: #008f39;
+}
+
+.content {
+    text-align: center;
+    margin: 40px auto;
+}
+
+.new-table {
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 25px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: white;
+    width: 140px;
+    height: 160px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+}
+
+.empty-message {
+    width: 100%;
+    t
