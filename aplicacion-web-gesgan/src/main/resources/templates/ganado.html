@@ -2,6 +2,8 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta th:if="${_csrf != null}" name="_csrf" th:content="${_csrf.token}" />
+    <meta th:if="${_csrf != null}" name="_csrf_header" th:content="${_csrf.headerName}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ganado - GESGAN</title>
     <link rel="stylesheet" th:href="@{/css/ganado.css}">
@@ -31,12 +33,18 @@
 
     <section class="content">
         
+        <!-- BOTÓN ABRIR MODAL -->
         <div class="new-table" id="btnAgregarGanado">+ AGREGAR NUEVO REGISTRO</div>
+
+        <!-- MODAL -->
         <div id="modalGanado" class="modal">
             <div class="modal-content">
                 <h3>Nuevo Registro de Ganado</h3>
 
                 <form th:action="@{/ganado/guardar}" th:object="${ganado}" method="post">
+
+                    <label>DIN:</label>
+                    <input type="text" th:field="*{din}" required>
 
                     <label>Número de Piel:</label>
                     <input type="text" th:field="*{numeroPiel}" required>
@@ -65,46 +73,52 @@
                 modalGanado.style.display = "none";
             }
 
-            function eliminarGanado(id) {
+            /** ELIMINAR GANADO */
+            function eliminarGanado(din) {
                 if (confirm("¿Está seguro que desea eliminar este registro?")) {
-                    console.log("Intentando eliminar ID:", id);
+
                     const form = document.createElement('form');
                     form.method = 'POST';
-                    form.action = '/ganado/eliminar/' + id;
+                    form.action = '/ganado/eliminar/' + din;
 
-                    const csrfToken = document.querySelector('meta[name="_csrf"]');
-                    const csrfHeader = document.querySelector('meta[name="_csrf_header"]');
-                    
-                    if (csrfToken && csrfHeader) {
-                        const csrfInput = document.createElement('input');
-                        csrfInput.type = 'hidden';
-                        csrfInput.name = csrfHeader.content;
-                        csrfInput.value = csrfToken.content;
-                        form.appendChild(csrfInput);
-                    } else {
-                        const csrfInput = document.createElement('input');
-                        csrfInput.type = 'hidden';
-                        csrfInput.name = '_csrf';
-                        csrfInput.value = document.querySelector('input[name="_csrf"]')?.value || '';
+                    const tokenMeta = document.querySelector('meta[name="_csrf"]');
+                    const headerMeta = document.querySelector('meta[name="_csrf_header"]');
+
+                    const token = tokenMeta ? tokenMeta.content : null;
+                    const header = headerMeta ? headerMeta.content : null;
+
+                    if (token && header) {
+                        const csrfInput = document.createElement("input");
+                        csrfInput.type = "hidden";
+                        csrfInput.name = header;
+                        csrfInput.value = token;
                         form.appendChild(csrfInput);
                     }
-                    
+
                     document.body.appendChild(form);
                     form.submit();
                 }
             }
         </script>
 
+        <!-- LISTA DE GANADO -->
         <div class="cards">
             <div class="card" th:each="g : ${ganados}">
                 <div>
                     <h4 th:text="${g.numeroPiel}">Piel</h4>
-                    <p th:text="${g.peso + ' kg'}">Peso</p>
-                    <small th:text="${'Ingreso: ' + #temporals.format(g.fechaIngreso, 'dd/MM/yyyy')}">Fecha</small>
+
+                    <p th:text="${#strings.concat(g.peso, ' kg')}">Peso</p>
+
+                    <small th:text="${#strings.concat('Ingreso: ', #temporals.format(g.fechaIngreso,'dd/MM/yyyy'))}">
+                        Fecha
+                    </small>
+
                     <br>
-                    <small>ID: <span th:text="${g.id}"></span></small>
+
+                    <small>DIN: <span th:text="${g.din}"></span></small>
                 </div>
-                <button class="btn-eliminar" th:onclick="'eliminarGanado(' + ${g.id} + ')'">
+
+                <button class="btn-eliminar" th:attr="data-din=${g.din}" onclick="eliminarGanado(this.dataset.din)">
                     Eliminar
                 </button>
             </div>
@@ -123,8 +137,7 @@
 <footer>
     <div class="footer">
         <div class="copyright">
-            <a href="https://www.archivoseladio.com" class="copyright-link" target="_blank">©</a> 
-            2025 GESGAN - Todos los derechos reservados
+            © 2025 GESGAN - Todos los derechos reservados
         </div>
     </div>
 </footer>

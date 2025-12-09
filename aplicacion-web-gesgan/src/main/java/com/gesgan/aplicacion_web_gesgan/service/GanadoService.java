@@ -23,16 +23,16 @@ public class GanadoService {
         return ganadoRepository.findAll();
     }
 
-    public Optional<Ganado> buscarPorId(Long id) {
-        return ganadoRepository.findById(id);
+    public Optional<Ganado> buscarPorId(String din) {
+        return ganadoRepository.findById(din);
     }
 
     public Ganado guardarGanado(Ganado ganado) {
         return ganadoRepository.save(ganado);
     }
 
-    public void eliminarGanado(Long id) {
-        ganadoRepository.deleteById(id);
+    public void eliminarGanado(String din) {
+        ganadoRepository.deleteById(din);
     }
 
     // Nuevos métodos específicos

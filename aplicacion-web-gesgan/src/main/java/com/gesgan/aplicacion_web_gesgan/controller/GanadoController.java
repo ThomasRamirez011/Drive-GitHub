@@ -29,13 +29,12 @@ public class GanadoController {
             model.addAttribute("usuarioLogueado", true);
             model.addAttribute("username", auth.getName());
             model.addAttribute("ganados", ganadoService.listarGanado());
-            model.addAttribute("ganado", new Ganado()); // Para el formulario nuevo
+            model.addAttribute("ganado", new Ganado());
             return "ganado";
         } else {
             return "redirect:/login";
         }
     }
-
 
     @PostMapping("/ganado/guardar")
     public String guardarGanado(@ModelAttribute Ganado ganado) {
@@ -43,9 +42,9 @@ public class GanadoController {
         return "redirect:/ganado";
     }
 
-    @PostMapping("/ganado/eliminar/{id}")
-    public String eliminarGanado(@PathVariable("id") Long id) {
-        ganadoService.eliminarGanado(id);
+    @PostMapping("/ganado/eliminar/{din}")
+    public String eliminarGanado(@PathVariable String din){
+        ganadoService.eliminarGanado(din);
         return "redirect:/ganado";
     }
     

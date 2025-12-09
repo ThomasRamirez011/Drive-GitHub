@@ -1,11 +1,10 @@
 package com.gesgan.aplicacion_web_gesgan.model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -14,8 +13,8 @@ import jakarta.persistence.Table;
 public class Ganado {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "din", nullable = false, length = 100)
+    private String din;
 
     @Column(name = "numero_piel", nullable = false, length = 100)
     private String numeroPiel;
@@ -29,15 +28,17 @@ public class Ganado {
     // Constructores
     public Ganado() {}
 
-    public Ganado(String numeroPiel, Double peso, LocalDate fechaIngreso) {
+    public Ganado(String din, String numeroPiel, Double peso, LocalDate fechaIngreso) {
+        this.din = din;
         this.numeroPiel = numeroPiel;
         this.peso = peso;
         this.fechaIngreso = fechaIngreso;
     }
 
     // Getters y Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+
+    public String getDin() { return din; }
+    public void setDin(String din) { this.din = din; }
 
     public String getNumeroPiel() { return numeroPiel; }
     public void setNumeroPiel(String numeroPiel) { this.numeroPiel = numeroPiel; }
@@ -51,10 +52,23 @@ public class Ganado {
     @Override
     public String toString() {
         return "Ganado{" +
-                "id=" + id +
+                ", din='" + din + '\'' +
                 ", numeroPiel='" + numeroPiel + '\'' +
                 ", peso=" + peso +
                 ", fechaIngreso=" + fechaIngreso +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ganado ganado = (Ganado) o;
+        return Objects.equals(din, ganado.din);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(din);
     }
 }
