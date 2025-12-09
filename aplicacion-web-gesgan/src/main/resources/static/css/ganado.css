@@ -303,3 +303,155 @@ footer {
 .btn-eliminar:hover {
     background-color: #c0392b;
 }
+
+/* FILTRO: botón flotante y panel deslizante */
+.filter-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #008f39;
+    color: #fff;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 28px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    z-index: 10002;
+}
+
+.filter-panel {
+    position: fixed;
+    top: 70px;
+    right: 0;
+    width: 340px;
+    max-width: 92%;
+    height: auto;
+    background: #fff;
+    border-left: 4px solid #008f39;
+    border-radius: 8px 0 0 8px;
+    box-shadow: -8px 6px 30px rgba(0,0,0,0.15);
+    padding: 18px;
+    transform: translateX(110%);
+    transition: transform 0.25s ease-in-out;
+    z-index: 10001;
+}
+
+.filter-panel.open {
+    transform: translateX(0);
+}
+
+.filter-panel h4 {
+    margin-bottom: 10px;
+    color: #008f39;
+}
+
+.filter-form label {
+    display: block;
+    font-weight: 600;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.filter-form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 6px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.filter-form button[type="submit"] {
+    margin-top: 12px;
+    width: 100%;
+    padding: 10px;
+    background: #008f39;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.filter-form .btn-clear {
+    display: inline-block;
+    margin-top: 8px;
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+}
+
+.filter-close {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: transparent;
+    border: none;
+    font-weight: 700;
+    color: #666;
+    cursor: pointer;
+}
+
+/* Registros eliminados: botón y panel */
+
+.log-toggle {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: #444;
+    color: #fff;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 28px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    z-index: 10002;
+}
+
+.log-panel {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 320px;
+    max-width: 90%;
+    background: #fff;
+    border-right: 4px solid #444;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 8px 6px 30px rgba(0,0,0,0.12);
+    padding: 14px;
+    transform: translateX(-110%);
+    transition: transform 0.25s ease-in-out;
+    z-index: 10001;
+}
+
+.log-panel.open {
+    transform: translateX(0);
+}
+
+.log-list {
+    max-height: 60vh;
+    overflow: auto;
+    padding-right: 6px;
+}
+
+.log-item {
+    padding: 8px 6px;
+    border-bottom: 1px dashed #eee;
+}
+
+.log-item strong {
+    display: block;
+    color: #222;
+}
+
+.log-item div {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Ajuste del botón de cierre dentro del panel left */
+.log-panel .filter-close {
+    left: auto;
+    right: 8px;
+}

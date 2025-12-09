@@ -20,7 +20,7 @@
             <ul>
                 <li><a th:href="@{/}">Inicio</a></li>
                 <li><a th:href="@{/ganado}" class="active">Ganado</a></li>
-                <li><a th:href="@{/config}">Configuración</a></li>
+                <li><a th:href="@{/config}">Perfil</a></li>
             </ul>
         </nav>
     </div>
@@ -33,6 +33,49 @@
 
     <section class="content">
         
+        <!-- FORMULARIO DE FILTROS (panel deslizante) -->
+        <div class="filter-panel" id="filterPanel">
+            <button class="filter-close" type="button" onclick="toggleFilter(false)">✕</button>
+            <h4>Filtros</h4>
+            <form method="get" action="/ganado" class="filter-form">
+                <label>DIN:</label>
+                <input type="text" name="din" th:value="${fDin}">
+
+                <label>Número de Piel:</label>
+                <input type="text" name="numeroPiel" th:value="${fNumeroPiel}">
+
+                <label>Peso mínimo (kg):</label>
+                <input type="number" step="0.01" name="pesoMin" th:value="${fPesoMin}">
+
+                <label>Peso máximo (kg):</label>
+                <input type="number" step="0.01" name="pesoMax" th:value="${fPesoMax}">
+
+                <label>Fecha de Ingreso:</label>
+                <input type="date" name="fecha" th:value="${fFecha}">
+
+                <button type="submit">Buscar</button>
+                <a class="btn-clear" th:href="@{/ganado}">Limpiar</a>
+            </form>
+        </div>
+
+        <!-- BOTÓN FLOTANTE DE FILTRO -->
+        <button id="btnFiltro" class="filter-toggle" aria-label="Abrir filtros">Filtro</button>
+        <!-- BOTÓN FLOTANTE DE REGISTROS ELIMINADOS -->
+        <button id="btnLogs" class="log-toggle" aria-label="Registros eliminados">Registros</button>
+
+        <!-- PANEL DE REGISTROS ELIMINADOS -->
+        <div class="log-panel" id="logPanel">
+            <button class="filter-close" type="button" onclick="toggleLog(false)">✕</button>
+            <h4>Registros eliminados</h4>
+            <div class="log-list">
+                <div th:if="${#lists.isEmpty(deletionLogs)}" class="empty-message">No hay registros de eliminaciones.</div>
+                <div th:each="entry : ${deletionLogs}" class="log-item">
+                    <strong th:text="${entry.din}">DIN</strong>
+                    <div th:text="${#temporals.format(entry.deletionTime, 'dd/MM/yyyy HH:mm:ss')}">fecha</div>
+                </div>
+            </div>
+        </div>
+
         <!-- BOTÓN ABRIR MODAL -->
         <div class="new-table" id="btnAgregarGanado">+ AGREGAR NUEVO REGISTRO</div>
 
@@ -98,6 +141,40 @@
                     document.body.appendChild(form);
                     form.submit();
                 }
+            }
+        </script>
+
+        <script>
+            // Control para el panel de filtros
+            const btnFiltro = document.getElementById('btnFiltro');
+            const filterPanel = document.getElementById('filterPanel');
+
+            function toggleFilter(open) {
+                if (open === undefined) {
+                    filterPanel.classList.toggle('open');
+                    return;
+                }
+                if (open) filterPanel.classList.add('open'); else filterPanel.classList.remove('open');
+            }
+
+            if (btnFiltro) {
+                btnFiltro.addEventListener('click', () => toggleFilter(true));
+            }
+        
+            // Control para panel de registros eliminados
+            const btnLogs = document.getElementById('btnLogs');
+            const logPanel = document.getElementById('logPanel');
+
+            function toggleLog(open) {
+                if (open === undefined) {
+                    logPanel.classList.toggle('open');
+                    return;
+                }
+                if (open) logPanel.classList.add('open'); else logPanel.classList.remove('open');
+            }
+
+            if (btnLogs) {
+                btnLogs.addEventListener('click', () => toggleLog(true));
             }
         </script>
 
