@@ -36,15 +36,11 @@ public class GanadoService {
     }
 
     // Nuevos métodos específicos
-    public List<Ganado> buscarPorTipo(String tipo) {
-        return ganadoRepository.findByTipo(tipo);
+    public List<Ganado> buscarPorNumeroPiel(String numeroPiel) {
+        return ganadoRepository.findByNumeroPielContainingIgnoreCase(numeroPiel);
     }
 
-    public List<Ganado> buscarPorRaza(String raza) {
-        return ganadoRepository.findByRaza(raza);
-    }
-
-    public long contarPorTipo(String tipo) {
-        return ganadoRepository.countByTipo(tipo);
+    public List<Ganado> buscarPorPesoMayorQue(Double peso) {
+        return ganadoRepository.findByPesoGreaterThan(peso);
     }
 }

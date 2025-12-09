@@ -17,14 +17,11 @@ public class Ganado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombre", nullable = false, length = 100)
-    private String nombre;
+    @Column(name = "numero_piel", nullable = false, length = 100)
+    private String numeroPiel;
 
-    @Column(name = "tipo", length = 50)
-    private String tipo;
-
-    @Column(name = "raza", length = 50)
-    private String raza;
+    @Column(name = "peso")
+    private Double peso;
 
     @Column(name = "fecha_ingreso")
     private LocalDate fechaIngreso;
@@ -32,10 +29,9 @@ public class Ganado {
     // Constructores
     public Ganado() {}
 
-    public Ganado(String nombre, String tipo, String raza, LocalDate fechaIngreso) {
-        this.nombre = nombre;
-        this.tipo = tipo;
-        this.raza = raza;
+    public Ganado(String numeroPiel, Double peso, LocalDate fechaIngreso) {
+        this.numeroPiel = numeroPiel;
+        this.peso = peso;
         this.fechaIngreso = fechaIngreso;
     }
 
@@ -43,14 +39,11 @@ public class Ganado {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    public String getNumeroPiel() { return numeroPiel; }
+    public void setNumeroPiel(String numeroPiel) { this.numeroPiel = numeroPiel; }
 
-    public String getTipo() { return tipo; }
-    public void setTipo(String tipo) { this.tipo = tipo; }
-
-    public String getRaza() { return raza; }
-    public void setRaza(String raza) { this.raza = raza; }
+    public Double getPeso() { return peso; }
+    public void setPeso(Double peso) { this.peso = peso; }
 
     public LocalDate getFechaIngreso() { return fechaIngreso; }
     public void setFechaIngreso(LocalDate fechaIngreso) { this.fechaIngreso = fechaIngreso; }
@@ -59,9 +52,8 @@ public class Ganado {
     public String toString() {
         return "Ganado{" +
                 "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", tipo='" + tipo + '\'' +
-                ", raza='" + raza + '\'' +
+                ", numeroPiel='" + numeroPiel + '\'' +
+                ", peso=" + peso +
                 ", fechaIngreso=" + fechaIngreso +
                 '}';
     }

@@ -20,7 +20,6 @@
                     <li th:if="${!usuarioLogueado}"><a th:href="@{/login}">Iniciar Sesión</a></li>
                     <li th:if="${!usuarioLogueado}"><a th:href="@{/registro}">Registrarse</a></li>
                     <li th:if="${usuarioLogueado}"><a th:href="@{/ganado}">Ganado</a></li>
-                    <li th:if="${usuarioLogueado}"><a th:href="@{/sanidad}">Sanidad</a></li>
                     <li th:if="${usuarioLogueado}"><a th:href="@{/config}">Configuración</a></li>
                 </ul>
             </nav>

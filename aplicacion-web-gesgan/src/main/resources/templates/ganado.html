@@ -7,71 +7,127 @@
     <link rel="stylesheet" th:href="@{/css/ganado.css}">
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <div class="logo">
-                <img th:src="@{/css/imgs/logomn.png}" alt="GESGAN Logo">
-                <h1>GESGAN</h1>
-            </div>                          
-            <nav>
-                <ul>
-                    <li><a th:href="@{/}">Inicio</a></li>
-                    <li><a th:href="@{/ganado}" class="active">Ganado</a></li>
-                    <li><a th:href="@{/sanidad}">Sanidad</a></li>
-                    <li><a th:href="@{/config}">Configuración</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
+<header>
+    <div class="header-content">
+        <div class="logo">
+            <img th:src="@{/css/imgs/logomn.png}" alt="GESGAN Logo">
+            <h1>GESGAN</h1>
+        </div>                          
+        <nav>
+            <ul>
+                <li><a th:href="@{/}">Inicio</a></li>
+                <li><a th:href="@{/ganado}" class="active">Ganado</a></li>
+                <li><a th:href="@{/config}">Configuración</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
+<main class="content-section">
+    <section class="section-title">
+        <h2>GESTIÓN DE GANADO</h2>
+    </section>
 
-    <main class="content-section">
-        <section class="section-title">
-            <h2>GESTIÓN DE GANADO</h2>
-        </section>
+    <section class="content">
+        
+        <div class="new-table" id="btnAgregarGanado">+ AGREGAR NUEVO REGISTRO</div>
+        <div id="modalGanado" class="modal">
+            <div class="modal-content">
+                <h3>Nuevo Registro de Ganado</h3>
 
-        <section class="tabs">
-            <button class="tab active">Toros</button>
-            <button class="tab">Vacas</button>
-            <button class="tab">Lotes por Toro</button>
-            <button class="tab">Llegadas</button>
-            <button class="tab">Salidas</button>
-            <button class="tab">Ventas</button>
-        </section>
+                <form th:action="@{/ganado/guardar}" th:object="${ganado}" method="post">
 
-        <section class="content">
-            <div class="new-table">+ AGREGAR NUEVO REGISTRO</div>
+                    <label>Número de Piel:</label>
+                    <input type="text" th:field="*{numeroPiel}" required>
 
-            <div class="cards">
-                <div class="card" th:each="g : ${ganados}">
-                    <div>
-                        <h4 th:text="${g.nombre}">Nombre</h4>
-                        <p th:text="${g.tipo}">Tipo</p>
-                        <p th:text="${g.raza}">Raza</p>
-                        <small th:text="${'Ingreso: ' + #temporals.format(g.fechaIngreso, 'dd/MM/yyyy')}">
-                            Fecha
-                        </small>
-                    </div>
-                </div>
+                    <label>Peso (kg):</label>
+                    <input type="number" step="0.01" th:field="*{peso}" required>
+
+                    <label>Fecha de Ingreso:</label>
+                    <input type="date" th:field="*{fechaIngreso}" required>
+
+                    <button type="submit">Guardar</button>
+                    <button type="button" onclick="cerrarGanado()">Cancelar</button>
+                </form>
             </div>
-        </section>
-    </main>
+        </div>
 
-    <div class="terms-contact-container">
-        <div class="terms-contact-content">
-            <div class="terms">Términos y condiciones</div>
-            <div class="contact-email">Contacto: Gesgan2025@gmail.com</div>
+        <script>
+            const btnGanado = document.getElementById("btnAgregarGanado");
+            const modalGanado = document.getElementById("modalGanado");
+
+            btnGanado.addEventListener("click", () => {
+                modalGanado.style.display = "flex";
+            });
+
+            function cerrarGanado() {
+                modalGanado.style.display = "none";
+            }
+
+            function eliminarGanado(id) {
+                if (confirm("¿Está seguro que desea eliminar este registro?")) {
+                    console.log("Intentando eliminar ID:", id);
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = '/ganado/eliminar/' + id;
+
+                    const csrfToken = document.querySelector('meta[name="_csrf"]');
+                    const csrfHeader = document.querySelector('meta[name="_csrf_header"]');
+                    
+                    if (csrfToken && csrfHeader) {
+                        const csrfInput = document.createElement('input');
+                        csrfInput.type = 'hidden';
+                        csrfInput.name = csrfHeader.content;
+                        csrfInput.value = csrfToken.content;
+                        form.appendChild(csrfInput);
+                    } else {
+                        const csrfInput = document.createElement('input');
+                        csrfInput.type = 'hidden';
+                        csrfInput.name = '_csrf';
+                        csrfInput.value = document.querySelector('input[name="_csrf"]')?.value || '';
+                        form.appendChild(csrfInput);
+                    }
+                    
+                    document.body.appendChild(form);
+                    form.submit();
+                }
+            }
+        </script>
+
+        <div class="cards">
+            <div class="card" th:each="g : ${ganados}">
+                <div>
+                    <h4 th:text="${g.numeroPiel}">Piel</h4>
+                    <p th:text="${g.peso + ' kg'}">Peso</p>
+                    <small th:text="${'Ingreso: ' + #temporals.format(g.fechaIngreso, 'dd/MM/yyyy')}">Fecha</small>
+                    <br>
+                    <small>ID: <span th:text="${g.id}"></span></small>
+                </div>
+                <button class="btn-eliminar" th:onclick="'eliminarGanado(' + ${g.id} + ')'">
+                    Eliminar
+                </button>
+            </div>
+        </div>
+
+    </section>
+</main>
+
+<div class="terms-contact-container">
+    <div class="terms-contact-content">
+        <div class="terms">Términos y condiciones</div>
+        <div class="contact-email">Contacto: Gesgan2025@gmail.com</div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer">
+        <div class="copyright">
+            <a href="https://www.archivoseladio.com" class="copyright-link" target="_blank">©</a> 
+            2025 GESGAN - Todos los derechos reservados
         </div>
     </div>
+</footer>
 
-    <footer>
-        <div class="footer">
-            <div class="copyright">
-                <a href="https://www.archivoseladio.com" class="copyright-link" target="_blank">©</a> 
-                2025 GESGAN - Todos los derechos reservados
-            </div>
-        </div>
-    </footer>
 </body>
 </html>
